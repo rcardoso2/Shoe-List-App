@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.udacity.shoestore.ui.list.ShoeListViewModel" />
+
+        <variable
+            name="shoe"
+            type="com.udacity.shoestore.models.Shoe" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="32dp">
+
+
+        <TextView
+            android:id="@+id/add_shoe_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="@string/add_new_shoe"
+            android:textAlignment="center"
+            android:textSize="32sp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/name_label"
+            style="@style/shoeDetailStyle"
+            android:layout_marginTop="60dp"
+            android:text="@string/name"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/add_shoe_title" />
+
+        <EditText
+            android:id="@+id/shoe_name_field"
+            style="@style/shoeDetailsFields"
+            android:hint="@string/enter_name"
+            android:inputType="text"
+            android:text="@={shoe.name}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/name_label"
+            app:layout_constraintStart_toEndOf="@id/name_label" />
+
+        <TextView
+            android:id="@+id/company_label"
+            style="@style/shoeDetailStyle"
+            android:text="@string/company"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name_label" />
+
+        <EditText
+            android:id="@+id/shoe_company_field"
+            style="@style/shoeDetailsFields"
+            android:hint="@string/company_name_label"
+            android:inputType="text"
+            android:text="@={shoe.company}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/company_label"
+            app:layout_constraintStart_toEndOf="@id/company_label" />
+
+        <TextView
+            android:id="@+id/size_label"
+            style="@style/shoeDetailStyle"
+            android:text="@string/size"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/company_label" />
+
+        <EditText
+            android:id="@+id/shoe_size_field"
+            style="@style/shoeDetailsFields"
+            android:hint="@string/size_label"
+            android:inputType="numberDecimal"
+            android:text="@={shoe.size}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/size_label"
+            app:layout_constraintStart_toEndOf="@id/size_label" />
+
+        <TextView
+            android:id="@+id/description_label"
+            style="@style/shoeDetailStyle"
+            android:text="@string/description"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/size_label" />
+
+        <EditText
+            android:id="@+id/shoe_description_field"
+            style="@style/shoeDetailsFields"
+            android:hint="@string/description"
+            android:inputType="text"
+            android:text="@={shoe.description}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/description_label"
+            app:layout_constraintStart_toEndOf="@id/size_label" />
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.saveEvent(shoe.name, shoe.company,shoe.size,shoe.description)}"
+            android:text="@string/save"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
